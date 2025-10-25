@@ -1,0 +1,59 @@
+# .gitignore for Ren'Py projects
+# Adapted for common Ren'Py generated files, caches, builds, and IDE/OS artifacts.
+
+# Ren'Py compiled bytecode / caches
+*.rpyc
+*.rpyb
+
+# Ren'Py cached folders
+/cache/
+game/cache/
+
+# Python bytecode
+__pycache__/
+**/__pycache__/
+*.py[cod]
+*.pyo
+
+# Save files / persistent data (do not track user saves)
+game/saves/
+game/sync/
+game/persistent
+game/persistent.bak
+
+# Ren'Py build/distribution outputs
+dist/
+build/
+apk/
+android/
+web/
+*.rpa
+
+# Logs, tracebacks, and temporary files
+*.log
+traceback.txt
+errors.txt
+log.txt
+game/log.txt
+
+# Editor/project files
+.vscode/
+.idea/
+*.sublime-workspace
+*.sublime-project
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Swap files
+*.swp
+*.swo
+
+# Backups
+*.bak
+*.backup
+
+# If you want to keep certain generated assets under version control,
+# add exceptions below. Example to keep a single saves folder:
+# !game/saves/keep_this_one/

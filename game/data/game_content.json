@@ -1,0 +1,123 @@
+{
+  "world_map": {
+    "title": "HOLMES Prototype - World Map",
+    "image": "images/maps/world_map.png",
+    "stages": [
+      {
+        "id": "rome",
+        "title": "Ancient Rome",
+        "description": "Rome, 44 BCE. Political tension, urban life.",
+        "rect": { "x": 200, "y": 180, "w": 140, "h": 120 },
+        "default_unlocked": true,
+        "map_image": "images/maps/rome_map.png",
+        "areas": [
+          {
+            "id": "rome_forum",
+            "title": "Forum",
+            "summary": "Political heart of the Republic.",
+            "rect": { "x": 320, "y": 220, "w": 140, "h": 120 },
+            "background": "images/backgrounds/forum.png",
+            "interactions": [
+              {
+                "id": "rome_forum_orator",
+                "title": "Passionate Orator",
+                "sprite": "images/characters/npc.png",
+                "rect": { "x": 460, "y": 260, "w": 110, "h": 110 },
+                "dialogue": {
+                  "header": "Passionate Orator",
+                  "text": "Citizens! The Senate teeters on the edge of conspiracy. Where do you stand?",
+                  "keywords": ["senate", "conspiracy", "caesar"],
+                  "success_feedback": "You caught the scent of conspiracy in the Senate.",
+                  "failure_feedback": "Try mentioning the Senate or Caesar's looming fate."
+                }
+              },
+              {
+                "id": "rome_forum_scribe",
+                "title": "Meticulous Scribe",
+                "sprite": "images/characters/npc.png",
+                "rect": { "x": 380, "y": 340, "w": 100, "h": 100 },
+                "dialogue": {
+                  "header": "Meticulous Scribe",
+                  "text": "The ledgers never lie. What detail should I record about today's councils?",
+                  "keywords": ["vote", "edict", "decree"],
+                  "success_feedback": "The scribe nods and inks the detail immediately.",
+                  "failure_feedback": "He hesitates. Be precise with the council's decisions."
+                }
+              }
+            ]
+          },
+          {
+            "id": "rome_palace",
+            "title": "Palatine Palace",
+            "summary": "Nerve centre of power.",
+            "rect": { "x": 520, "y": 340, "w": 150, "h": 120 },
+            "background": "images/backgrounds/palace.png",
+            "interactions": [
+              {
+                "id": "rome_palace_guard",
+                "title": "Stoic Guard",
+                "sprite": "images/characters/npc.png",
+                "rect": { "x": 560, "y": 360, "w": 110, "h": 110 },
+                "dialogue": {
+                  "header": "Stoic Guard",
+                  "text": "State your business. Who sent you to these halls?",
+                  "keywords": ["senate", "brutus", "diplomatic"],
+                  "success_feedback": "The guard allows you passage with a curt nod.",
+                  "failure_feedback": "He grips his spear tighter. Mention your patron or mission."
+                }
+              },
+              {
+                "id": "rome_palace_advisor",
+                "title": "Wary Advisor",
+                "sprite": "images/characters/npc.png",
+                "rect": { "x": 610, "y": 300, "w": 110, "h": 110 },
+                "dialogue": {
+                  "header": "Wary Advisor",
+                  "text": "We craft tomorrow's decree tonight. What policy must we prioritise?",
+                  "keywords": ["grain", "alliance", "treasury"],
+                  "success_feedback": "He jots down your recommendation for the morning council.",
+                  "failure_feedback": "He frowns. Aim for tangible policy or resources."
+                }
+              }
+            ]
+          },
+          {
+            "id": "rome_docks",
+            "title": "Tiber Docks",
+            "summary": "Commerce and whispers arrive together.",
+            "rect": { "x": 140, "y": 420, "w": 150, "h": 120 },
+            "background": "images/backgrounds/docks.png",
+            "interactions": [
+              {
+                "id": "rome_docks_captain",
+                "title": "River Captain",
+                "sprite": "images/characters/npc.png",
+                "rect": { "x": 200, "y": 440, "w": 110, "h": 110 },
+                "dialogue": {
+                  "header": "River Captain",
+                  "text": "Boats carry more than grain. What rumor should I ferry upriver?",
+                  "keywords": ["rebellion", "supply", "patrol"],
+                  "success_feedback": "He salutes and orders the crew to spread the word.",
+                  "failure_feedback": "He shrugs. Share something worth the voyage."
+                }
+              },
+              {
+                "id": "rome_docks_smuggler",
+                "title": "Nervous Smuggler",
+                "sprite": "images/characters/npc.png",
+                "rect": { "x": 120, "y": 500, "w": 110, "h": 110 },
+                "dialogue": {
+                  "header": "Nervous Smuggler",
+                  "text": "Keep it quiet. Which cargo needs a silent escort tonight?",
+                  "keywords": ["scrolls", "arms", "coin"],
+                  "success_feedback": "He grins and signals his partners to prepare.",
+                  "failure_feedback": "He backs away. Be specific about the contraband."
+                }
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  }
+}
