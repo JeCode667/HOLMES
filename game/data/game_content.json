@@ -9,14 +9,14 @@
         "description": "French Revolution",
         "rect": { "x": 625, "y": 195, "w": 30, "h": 30 },
         "default_unlocked": true,
-        "map_image": "images/maps/rome_map.png",
+        "map_image": "images/backgrounds/paris_map.jpg",
         "areas": [
           {
-            "id": "rome_forum",
-            "title": "Forum",
-            "summary": "Political heart of the Republic.",
-            "rect": { "x": 320, "y": 220, "w": 140, "h": 120 },
-            "background": "images/backgrounds/forum.png",
+            "id": "paris_bastille",
+            "title": "La Bastille - The Bastille fortress",
+            "summary": "Symbol of the Ancien Régime ('old rule')",
+            "rect": { "x": 880, "y": 430, "w": 100, "h": 100 },
+            "background": "",
             "interactions": [
               {
                 "id": "rome_forum_orator",
@@ -47,10 +47,10 @@
             ]
           },
           {
-            "id": "rome_palace",
-            "title": "Palatine Palace",
-            "summary": "Nerve centre of power.",
-            "rect": { "x": 520, "y": 340, "w": 150, "h": 120 },
+            "id": "paris_palais",
+            "title": "Quartier Palais-Royal - Royal Palace area",
+            "summary": "Intellectual thriving hub",
+            "rect": { "x": 500, "y": 240, "w": 100, "h": 100 },
             "background": "images/backgrounds/palace.png",
             "interactions": [
               {
@@ -82,10 +82,10 @@
             ]
           },
           {
-            "id": "rome_docks",
-            "title": "Tiber Docks",
-            "summary": "Commerce and whispers arrive together.",
-            "rect": { "x": 140, "y": 420, "w": 150, "h": 120 },
+            "id": "paris_abbey",
+            "title": "Faubourg Saint-Germain",
+            "summary": "The heart of ecclesiastical Paris",
+            "rect": { "x": 480, "y": 420, "w": 100, "h": 100 },
             "background": "images/backgrounds/docks.png",
             "interactions": [
               {
