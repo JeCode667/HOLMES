@@ -4,10 +4,10 @@
     "image": "images/maps/world_map.png",
     "stages": [
       {
-        "id": "rome",
-        "title": "Ancient Rome",
-        "description": "Rome, 44 BCE. Political tension, urban life.",
-        "rect": { "x": 200, "y": 180, "w": 140, "h": 120 },
+        "id": "paris_1789",
+        "title": "Paris 1789",
+        "description": "French Revolution",
+        "rect": { "x": 625, "y": 195, "w": 30, "h": 30 },
         "default_unlocked": true,
         "map_image": "images/maps/rome_map.png",
         "areas": [

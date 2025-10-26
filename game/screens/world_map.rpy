@@ -40,7 +40,7 @@ screen world_map():
             $ y = rect.get("y", 0)
             $ w = rect.get("w", 80)
             $ h = rect.get("h", 80)
-            add Solid("#ff00ff44") xpos x ypos y xysize (w, h)
+            add Solid("#ff0000ff") xpos x ypos y xysize (w, h)
         frame:
             xalign 0.98
             yalign 0.02
