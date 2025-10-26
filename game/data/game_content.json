@@ -16,32 +16,32 @@
             "title": "La Bastille - The Bastille fortress",
             "summary": "Symbol of the Ancien Régime ('old rule')",
             "rect": { "x": 880, "y": 430, "w": 100, "h": 100 },
-            "background": "",
+            "background": "images/backgrounds/bastille.jpg",
             "interactions": [
               {
-                "id": "rome_forum_orator",
-                "title": "Passionate Orator",
-                "sprite": "images/characters/npc.png",
-                "rect": { "x": 460, "y": 260, "w": 110, "h": 110 },
+                "id": "paris_bastille_guard",
+                "title": "Disillusioned Guard",
+                "sprite": "images/characters/icon person.png",
+                "rect": { "x": 880, "y": 555, "w": 50, "h": 50 },
                 "dialogue": {
-                  "header": "Passionate Orator",
-                  "text": "Citizens! The Senate teeters on the edge of conspiracy. Where do you stand?",
-                  "keywords": ["senate", "conspiracy", "caesar"],
-                  "success_feedback": "You caught the scent of conspiracy in the Senate.",
-                  "failure_feedback": "Try mentioning the Senate or Caesar's looming fate."
+                  "header": "Guard",
+                  "text": "It's over, they cannot be stopped no more... How did it get this bad ?",
+                  "keywords": ["hunger", "power", "change"],
+                  "success_feedback": "That is true. It seems like it was bound to happen.",
+                  "failure_feedback": "I do not think you understand the situation... It is about the people."
                 }
               },
               {
-                "id": "rome_forum_scribe",
-                "title": "Meticulous Scribe",
-                "sprite": "images/characters/npc.png",
-                "rect": { "x": 380, "y": 340, "w": 100, "h": 100 },
+                "id": "paris_bastille_demonstrator",
+                "title": "Demonstrator",
+                "sprite": "images/characters/icon person.png",
+                "rect": { "x": 360, "y": 540, "w": 50, "h": 50 },
                 "dialogue": {
-                  "header": "Meticulous Scribe",
-                  "text": "The ledgers never lie. What detail should I record about today's councils?",
-                  "keywords": ["vote", "edict", "decree"],
-                  "success_feedback": "The scribe nods and inks the detail immediately.",
-                  "failure_feedback": "He hesitates. Be precise with the council's decisions."
+                  "header": "Demonstrator",
+                  "text": "It is about time we end this ! This place cannot hold any longer, we shall free erveryone !!!",
+                  "keywords": ["freedom", "change", "misery"],
+                  "success_feedback": "Exactly ! Come with us ! You shall be one of the proud liberators !",
+                  "failure_feedback": "I think you are confused here... Or are you with the guards ???"
                 }
               }
             ]
