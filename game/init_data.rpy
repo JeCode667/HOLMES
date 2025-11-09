@@ -43,6 +43,9 @@ init python:
             entries.append(entry)
         return entries
 
+    def get_primary_stage_id():
+        return _game_data.primary_stage_id
+
     # ------------------------------------------------------------------
     # Stage + area helpers
     # ------------------------------------------------------------------
@@ -60,6 +63,39 @@ init python:
             "title": stage.get("title", "Unknown Stage"),
             "description": stage.get("description", ""),
         }
+
+    def get_stage_context_cards(stage_id):
+        cards = []
+        stage = get_stage(stage_id)
+        context_entries = []
+        if isinstance(stage, dict):
+            context_entries = stage.get("context_cards", []) or []
+        if isinstance(context_entries, list):
+            for entry in context_entries:
+                if not isinstance(entry, dict):
+                    continue
+                cards.append({
+                    "title": entry.get("title", "Unknown Area"),
+                    "text": entry.get("text", ""),
+                    "image": entry.get("image"),
+                })
+        if not cards:
+            for area in get_stage_areas(stage_id)[:3]:
+                if not isinstance(area, dict):
+                    continue
+                cards.append({
+                    "title": area.get("title", "Unknown Area"),
+                    "text": area.get("summary", ""),
+                    "image": area.get("context_image") or area.get("background") or area.get("image"),
+                })
+        cards = cards[:3]
+        while len(cards) < 3:
+            cards.append(None)
+        return cards
+
+    def debug_stage_context_cards(stage_id):
+        cards = get_stage_context_cards(stage_id)
+        return cards
 
     def get_stage_map_image(stage_id):
         stage = get_stage(stage_id)
@@ -119,14 +155,6 @@ init python:
             "count": len(interactions),
             "stage": stage_id,
         }
-        try:
-            import renpy
-
-            renpy.log(
-                f"get_interactive_objects({area_id}) resolved={resolved_id} stage={stage_id} -> {len(interactions)} entries"
-            )
-        except Exception:
-            pass
         return interactions
 
     # ------------------------------------------------------------------

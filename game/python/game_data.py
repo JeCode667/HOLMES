@@ -74,6 +74,14 @@ class GameData:
             with open(self.data_path, "r", encoding="utf-8") as fh:
                 data = json.load(fh)
                 if isinstance(data, dict):
+                    try:
+                        import renpy  # type: ignore
+
+                        renpy.log(
+                            f"GameData: loaded data from {self.data_path} with keys {list(data.keys())}"
+                        )
+                    except Exception:
+                        pass
                     return data
         except FileNotFoundError:
             pass
@@ -162,6 +170,18 @@ class GameData:
 
     def get_stage(self, stage_id: str) -> Optional[Dict[str, object]]:
         stage = self._stage_index.get(stage_id)
+        if stage is None:
+            try:
+                import renpy  # type: ignore
+
+                renpy.log(
+                    "GameData:get_stage missing %r. Available=%s" % (
+                        stage_id,
+                        list(self._stage_index.keys()),
+                    )
+                )
+            except Exception:
+                pass
         return deepcopy(stage) if stage else None
 
     def get_stage_areas(self, stage_id: str) -> List[Dict[str, object]]:
@@ -175,6 +195,19 @@ class GameData:
         for area in areas_list or []:
             if isinstance(area, dict):
                 results.append(deepcopy(area))
+        return results
+
+    def get_stage_context_cards(self, stage_id: str) -> List[Dict[str, object]]:
+        stage = self._stage_index.get(stage_id)
+        results: List[Dict[str, object]] = []
+        if not stage:
+            return results
+        raw_cards = stage.get("context_cards", [])
+        if not isinstance(raw_cards, list):
+            return results
+        for card in raw_cards:
+            if isinstance(card, dict):
+                results.append(deepcopy(card))
         return results
 
     def get_area(self, area_id: str) -> Optional[Dict[str, object]]:
