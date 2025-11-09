@@ -10,6 +10,26 @@
         "rect": { "x": 625, "y": 195, "w": 30, "h": 30 },
         "default_unlocked": true,
         "map_image": "images/backgrounds/paris_map.jpg",
+        "context_cards": [
+          {
+            "id": "paris_context_1",
+            "title": "France, 1788: Crisis Before the Storm",
+            "text": "France is on the brink. Decades of royal spending and costly wars have emptied the treasury. Food prices soar, and hunger spreads among the poor. Yet at Versailles, luxury continues. The people’s patience is thinning.",
+            "image": "images/context_cards/paris_streets.jpg"
+          },
+          {
+            "id": "paris_context_2",
+            "title": "May 1789: The Estates General Assemble",
+            "text": "In May 1789, Louis XVI summons the Estates-General (clergy, nobility, and commoners) to solve the crisis. But when the Third Estate demands real representation, tension rises. The old order begins to tremble.",
+            "image": "images/context_cards/paris_assembly.jpg"
+          },
+          {
+            "id": "paris_context_3",
+            "title": "July 14th, 1789: The Storming of the Bastille",
+            "text": "Anger explodes in Paris. On July 14th, a mob storms the Bastille, symbol of royal tyranny. Gunfire, smoke, and chaos fill the streets. The Revolution has begun and there is no turning back.",
+            "image": "images/context_cards/paris_bastille.jpg"
+          }
+        ],
         "areas": [
           {
             "id": "paris_bastille",
