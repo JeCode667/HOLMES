@@ -39,7 +39,7 @@ screen stage_map(stage_id=None):
             $ y = rect.get("y", 0)
             $ w = rect.get("w", 100)
             $ h = rect.get("h", 100)
-            add Solid("#ff00ff44") xpos x ypos y xysize (w, h)
+            add Solid("#0d00ff44") xpos x ypos y xysize (w, h)
         frame:
             xalign 0.98
             yalign 0.02

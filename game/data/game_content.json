@@ -9,68 +9,48 @@
         "description": "French Revolution",
         "rect": { "x": 625, "y": 195, "w": 30, "h": 30 },
         "default_unlocked": true,
-        "map_image": "images/maps/rome_map.png",
-        "context_cards": [
-          {
-            "id": "paris_context_1",
-            "title": "France, 1788: Crisis Before the Storm",
-            "text": "France is on the brink. Decades of royal spending and costly wars have emptied the treasury. Food prices soar, and hunger spreads among the poor. Yet at Versailles, luxury continues. The people’s patience is thinning.",
-            "image": "images/context_cards/paris_streets.jpg"
-          },
-          {
-            "id": "paris_context_2",
-            "title": "May 1789: The Estates General Assemble",
-            "text": "In May 1789, Louis XVI summons the Estates-General (clergy, nobility, and commoners) to solve the crisis. But when the Third Estate demands real representation, tension rises. The old order begins to tremble.",
-            "image": "images/context_cards/paris_assembly.jpg"
-          },
-          {
-            "id": "paris_context_3",
-            "title": "July 14th, 1789: The Storming of the Bastille",
-            "text": "Anger explodes in Paris. On July 14th, a mob storms the Bastille, symbol of royal tyranny. Gunfire, smoke, and chaos fill the streets. The Revolution has begun and there is no turning back.",
-            "image": "images/context_cards/paris_bastille.jpg"
-          }
-        ],
+        "map_image": "images/backgrounds/paris_map.jpg",
         "areas": [
           {
-            "id": "rome_forum",
-            "title": "Forum",
-            "summary": "Political heart of the Republic.",
-            "rect": { "x": 320, "y": 220, "w": 140, "h": 120 },
-            "background": "images/backgrounds/forum.png",
+            "id": "paris_bastille",
+            "title": "La Bastille - The Bastille fortress",
+            "summary": "Symbol of the Ancien Régime ('old rule')",
+            "rect": { "x": 880, "y": 430, "w": 100, "h": 100 },
+            "background": "images/backgrounds/bastille.jpg",
             "interactions": [
               {
-                "id": "rome_forum_orator",
-                "title": "Passionate Orator",
-                "sprite": "images/characters/npc.png",
-                "rect": { "x": 460, "y": 260, "w": 110, "h": 110 },
+                "id": "paris_bastille_guard",
+                "title": "Disillusioned Guard",
+                "sprite": "images/characters/icon person.png",
+                "rect": { "x": 880, "y": 555, "w": 50, "h": 50 },
                 "dialogue": {
-                  "header": "Passionate Orator",
-                  "text": "Citizens! The Senate teeters on the edge of conspiracy. Where do you stand?",
-                  "keywords": ["senate", "conspiracy", "caesar"],
-                  "success_feedback": "You caught the scent of conspiracy in the Senate.",
-                  "failure_feedback": "Try mentioning the Senate or Caesar's looming fate."
+                  "header": "Guard",
+                  "text": "It's over, they cannot be stopped no more... How did it get this bad ?",
+                  "keywords": ["hunger", "power", "change"],
+                  "success_feedback": "That is true. It seems like it was bound to happen.",
+                  "failure_feedback": "I do not think you understand the situation... It is about the people."
                 }
               },
               {
-                "id": "rome_forum_scribe",
-                "title": "Meticulous Scribe",
-                "sprite": "images/characters/npc.png",
-                "rect": { "x": 380, "y": 340, "w": 100, "h": 100 },
+                "id": "paris_bastille_demonstrator",
+                "title": "Demonstrator",
+                "sprite": "images/characters/icon person.png",
+                "rect": { "x": 360, "y": 540, "w": 50, "h": 50 },
                 "dialogue": {
-                  "header": "Meticulous Scribe",
-                  "text": "The ledgers never lie. What detail should I record about today's councils?",
-                  "keywords": ["vote", "edict", "decree"],
-                  "success_feedback": "The scribe nods and inks the detail immediately.",
-                  "failure_feedback": "He hesitates. Be precise with the council's decisions."
+                  "header": "Demonstrator",
+                  "text": "It is about time we end this ! This place cannot hold any longer, we shall free erveryone !!!",
+                  "keywords": ["freedom", "change", "misery"],
+                  "success_feedback": "Exactly ! Come with us ! You shall be one of the proud liberators !",
+                  "failure_feedback": "I think you are confused here... Or are you with the guards ???"
                 }
               }
             ]
           },
           {
-            "id": "rome_palace",
-            "title": "Palatine Palace",
-            "summary": "Nerve centre of power.",
-            "rect": { "x": 520, "y": 340, "w": 150, "h": 120 },
+            "id": "paris_palais",
+            "title": "Quartier Palais-Royal - Royal Palace area",
+            "summary": "Intellectual thriving hub",
+            "rect": { "x": 500, "y": 240, "w": 100, "h": 100 },
             "background": "images/backgrounds/palace.png",
             "interactions": [
               {
@@ -102,10 +82,10 @@
             ]
           },
           {
-            "id": "rome_docks",
-            "title": "Tiber Docks",
-            "summary": "Commerce and whispers arrive together.",
-            "rect": { "x": 140, "y": 420, "w": 150, "h": 120 },
+            "id": "paris_abbey",
+            "title": "Faubourg Saint-Germain",
+            "summary": "The heart of ecclesiastical Paris",
+            "rect": { "x": 480, "y": 420, "w": 100, "h": 100 },
             "background": "images/backgrounds/docks.png",
             "interactions": [
               {
