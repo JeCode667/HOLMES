@@ -31,8 +31,12 @@ screen confirm(message, yes_action, no_action):
             hbox:
                 xalign 0.5
                 spacing 100
-                textbutton _("Yes") action yes_action
-                textbutton _("No") action no_action
+                textbutton _("Yes") action yes_action:
+                    style_prefix "interactive_button"
+                    at interactive_hover_zoom
+                textbutton _("No") action no_action:
+                    style_prefix "interactive_button"
+                    at interactive_hover_zoom
 
 ## Quick Menu screen #########################################################
 screen quick_menu():
@@ -41,14 +45,14 @@ screen quick_menu():
         style_prefix "quick"
         xalign 0.5
         yalign 0.95
-        textbutton _("Back") action Rollback()
-        textbutton _("Q.Save") action QuickSave()
-        textbutton _("Q.Load") action QuickLoad()
-        textbutton _("Skip") action Skip()
-        textbutton _("F.Skip") action Skip(fast=True, confirm=True)
-        textbutton _("Auto") action Preference("auto-forward", "toggle")
-    textbutton _("Menu") action ShowMenu()
-    textbutton _("Prefs") action ShowMenu("preferences")
+        textbutton _("Back") action Rollback() at interactive_hover_zoom
+        textbutton _("Q.Save") action QuickSave() at interactive_hover_zoom
+        textbutton _("Q.Load") action QuickLoad() at interactive_hover_zoom
+        textbutton _("Skip") action Skip() at interactive_hover_zoom
+        textbutton _("F.Skip") action Skip(fast=True, confirm=True) at interactive_hover_zoom
+        textbutton _("Auto") action Preference("auto-forward", "toggle") at interactive_hover_zoom
+    textbutton _("Menu") action ShowMenu() at interactive_hover_zoom
+    textbutton _("Prefs") action ShowMenu("preferences") at interactive_hover_zoom
 
 # Basic styles for the confirm screen
 style confirm_frame:

@@ -19,7 +19,11 @@ screen interaction_screen(target_id=None, area_id=None):
     add Solid("#00000066")
     add sprite xpos 0.22 xanchor 0.5 yalign 0.98 yanchor 1.0
 
-    textbutton "Back to Area" action ShowMenu('area_exploration', area_id=active_area_id) xalign 0.02 yalign 0.04
+    textbutton "Back to Area" action ShowMenu('area_exploration', area_id=active_area_id):
+        xalign 0.02
+        yalign 0.04
+        style_prefix "interactive_button"
+        at interactive_hover_zoom
 
     window:
         style "say_window"
@@ -42,7 +46,9 @@ screen interaction_screen(target_id=None, area_id=None):
                     SetVariable("player_response", typed_response),
                     Function(process_input, typed_response),
                     SetScreenVariable("typed_response", ""),
-                ]
+                ]:
+                    style_prefix "interactive_button"
+                    at interactive_hover_zoom
             text "[get_feedback()]" style "say_thought"
 
     if debug_clickables:

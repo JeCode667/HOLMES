@@ -1,46 +1,59 @@
-# Simple dialogue processing for prototype input
-from renpy.store import (
-    _dialogue_feedback,
-    get_dialogue_feedback_text,
-    get_dialogue_keywords,
+# dialogue_logic.py — GPT4All blocking inference (for debugging & testing)
+import renpy.exports as renpy_exports
+from python.llm_local_bind import generate_sync
+
+SYSTEM_PROMPT = (
+    "You are a historical dialogue evaluator for the game HOLMES. "
+    "Judge whether the player's reply shows understanding of the scene and clues."
 )
 
+QWEN_CHAT_TEMPLATE = (
+    "<|im_start|>system\n{system}\n<|im_end|>\n"
+    "<|im_start|>user\n{user}\n<|im_end|>\n"
+    "<|im_start|>assistant\n"
+)
 
-def _normalize_keywords(keywords):
-    cleaned = []
-    for kw in keywords or []:
-        if not isinstance(kw, str):
-            continue
-        kw = kw.strip().lower()
-        if kw:
-            cleaned.append(kw)
-    return cleaned
+GENERATION_KWARGS = {
+    "max_tokens": 120,
+    "temp": 0.35,
+    "top_p": 0.92,
+    "repeat_penalty": 1.1,
+    "n_batch": 4,
+}
 
-
-def process_input(text, target_id):
-    """Evaluate player input against configured keywords."""
-
-    text_value = (text or "").strip()
+def process_input(player_text, target_id):
+    """Run the local LLM and return (ok, feedback)."""
+    text_value = (player_text or "").strip()
     if not text_value:
         feedback = "No input provided."
-        _dialogue_feedback[0] = feedback
+        renpy_exports.store._dialogue_feedback[0] = feedback
         return False, feedback
 
-    lowered = text_value.lower()
-    keywords = _normalize_keywords(get_dialogue_keywords(target_id))
-    matched = sorted({kw for kw in keywords if kw in lowered})
+    user_prompt = (
+        "You are a historical dialogue evaluator for the game HOLMES.\n"
+        f"Context: Player interacts with '{target_id}'.\n\n"
+        f"Player said: \"{text_value}\"\n\n"
+        "Evaluate the answer:\n"
+        "- If the response demonstrates understanding or mentions relevant clues, "
+        "start with 'Good answer:' followed by a short justification.\n"
+        "- Otherwise, start with 'Try again:' followed by a hint.\n"
+    )
 
-    if matched:
-        base_feedback = get_dialogue_feedback_text(target_id, success=True)
-        if base_feedback:
-            feedback = base_feedback
-        else:
-            feedback = "Strong response. You referenced key details."
-        feedback = f"{feedback} (matched: {', '.join(matched)})"
-        _dialogue_feedback[0] = feedback
-        return True, feedback
+    final_prompt = QWEN_CHAT_TEMPLATE.format(system=SYSTEM_PROMPT, user=user_prompt)
 
-    base_failure = get_dialogue_feedback_text(target_id, success=False)
-    feedback = base_failure or "Response received. Try citing the relevant clues."
-    _dialogue_feedback[0] = feedback
-    return False, feedback
+    # Direct synchronous call to GPT4All
+    try:
+        out = generate_sync(final_prompt, **GENERATION_KWARGS)
+    except Exception as e:
+        feedback = f"[Error during inference: {e}]"
+        renpy_exports.store._dialogue_feedback[0] = feedback
+        return False, feedback
+
+    feedback = out.strip() if out else "[No output from model.]"
+    ok = feedback.lower().startswith("good answer")
+
+    # Store feedback for UI access
+    renpy_exports.store._dialogue_feedback[0] = feedback
+    return ok, feedback
+
+

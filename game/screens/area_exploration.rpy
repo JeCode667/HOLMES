@@ -40,8 +40,7 @@ screen area_exploration(area_id=None):
             ypos y
             xsize w
             ysize h
-            background None
-            focus_mask True
+            style "interaction_hotspot"
             hovered SetScreenVariable("hovered_object", obj)
             unhovered SetScreenVariable("hovered_object", None)
             action [
@@ -49,7 +48,7 @@ screen area_exploration(area_id=None):
                 SetVariable("current_target", obj["id"]),
                 ShowMenu("interaction_screen", target_id=obj["id"], area_id=active_area_id),
             ]
-            add Transform(sprite, fit="contain", xysize=(w, h))
+            add Transform(sprite, fit="contain", xysize=(w, h)) at interactive_hover_zoom xalign 0.5 yalign 0.5
 
     if debug_clickables:
         for obj in interactions:
@@ -59,25 +58,7 @@ screen area_exploration(area_id=None):
             $ w = rect.get("w", 96)
             $ h = rect.get("h", 96)
             add Solid("#ff00ff44") xpos x ypos y xysize (w, h)
-        frame:
-            xalign 0.98
-            yalign 0.02
-            background None
-            vbox:
-                text "Interaction coords:" size 18
-                if interactions:
-                    for obj in interactions:
-                        $ rect = obj.get("rect", {})
-                        text "[obj['id']] @ ([rect.get('x')], [rect.get('y')])" size 14
-                else:
-                    text "No interactions mapped." size 14
-                if _areas_data.get("last_query"):
-                    $ payload = _areas_data.get("last_query")
-                    text "Lookup area=[payload['area']]" size 14
-                    text "Resolved=[payload['resolved']]" size 14
-                    text "Result count=[payload['count']]" size 14
-                    text "Stage=[payload.get('stage', 'unknown')]" size 14
-
+        
     if hovered_object:
         frame:
             xalign 0.5
@@ -86,4 +67,8 @@ screen area_exploration(area_id=None):
     elif interactions:
         text "Choose a point of interest." xalign 0.5 yalign 0.95
 
-    textbutton "Back to Stage Map" action ShowMenu('stage_map', stage_id=parent_stage) xalign 0.02 yalign 0.95
+    textbutton "Back to Stage Map" action ShowMenu('stage_map', stage_id=parent_stage):
+        xalign 0.02
+        yalign 0.95
+        style_prefix "interactive_button"
+        at interactive_hover_zoom

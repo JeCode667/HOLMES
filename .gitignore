@@ -57,3 +57,5 @@ Thumbs.db
 # If you want to keep certain generated assets under version control,
 # add exceptions below. Example to keep a single saves folder:
 # !game/saves/keep_this_one/
+
+*.zip

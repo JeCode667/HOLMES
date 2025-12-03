@@ -12,6 +12,12 @@ screen preferences():
         vbox:
             spacing 12
             label _("Preferences")
-            textbutton _("Fullscreen") action Function(renpy.fullscreen, True)
-            textbutton _("Windowed") action Function(renpy.fullscreen, False)
-            textbutton _("Return") action Return()
+            textbutton _("Fullscreen") action Function(renpy.fullscreen, True):
+                style_prefix "interactive_button"
+                at interactive_hover_zoom
+            textbutton _("Windowed") action Function(renpy.fullscreen, False):
+                style_prefix "interactive_button"
+                at interactive_hover_zoom
+            textbutton _("Return") action Return():
+                style_prefix "interactive_button"
+                at interactive_hover_zoom

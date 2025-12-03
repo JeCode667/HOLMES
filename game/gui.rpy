@@ -58,8 +58,34 @@ style menu_choice_button_text is default:
 style quick_button is default:
     background None
     padding (10, 0)
+    hover_background Solid("#ffffff10")
 
 style quick_button_text is default:
     color "#ffffff"
     hover_color "#ffff00"
     size 14
+    hover_outlines [ (1, "#000000e0", 0, 0) ]
+
+transform interactive_hover_zoom:
+    on idle:
+        ease 0.12 zoom 1.0
+    on hover:
+        ease 0.12 zoom 1.08
+
+style interactive_button_button is button:
+    background Solid("#ffffff14")
+    hover_background Solid("#ffd96633")
+    padding (12, 18)
+    focus_mask True
+
+style interactive_button_button_text is default:
+    color "#ffffff"
+    outlines [ (1, "#000000c0", 0, 0) ]
+    hover_outlines [ (3, "#000000ff", 0, 0) ]
+    hover_color "#ffd966"
+
+style interaction_hotspot is button:
+    background Solid("#ffffff0a")
+    hover_background Solid("#ffd96628")
+    padding (4, 4)
+    focus_mask True

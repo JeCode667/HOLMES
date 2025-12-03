@@ -14,22 +14,45 @@ screen world_map():
     $ world_image = get_world_image()
     $ stages = get_world_stage_entries()
 
-    imagemap:
-        xpos 0
-        ypos 0
-        ground world_image
-        for stage in stages:
-            if not stage.get("unlocked"):
-                continue
-            $ rect = stage.get("rect", {})
-            $ x = rect.get("x", 0)
-            $ y = rect.get("y", 0)
-            $ w = rect.get("w", 80)
-            $ h = rect.get("h", 80)
-            hotspot (x, y, w, h):
-                action [SetVariable("current_stage", stage["id"]), ShowMenu("stage_context", stage_id=stage["id"])]
-                hovered SetScreenVariable("hovered_stage", stage)
-                unhovered SetScreenVariable("hovered_stage", None)
+    add world_image
+
+    for stage in stages:
+        if not stage.get("unlocked"):
+            continue
+        $ rect = stage.get("rect", {})
+        $ x = rect.get("x", 0)
+        $ y = rect.get("y", 0)
+        $ w = rect.get("w", 80)
+        $ h = rect.get("h", 80)
+        $ icon_path = stage.get("icon")
+        $ is_hovered = hovered_stage and hovered_stage.get("id") == stage["id"]
+        button:
+            xpos x
+            ypos y
+            xsize w
+            ysize h
+            background None
+            padding (0, 0)
+            focus_mask True
+            hovered SetScreenVariable("hovered_stage", stage)
+            unhovered SetScreenVariable("hovered_stage", None)
+            action [SetVariable("current_stage", stage["id"]), ShowMenu("stage_context", stage_id=stage["id"]) ]
+            if is_hovered:
+                add Solid("#ffd96640") xysize (w, h)
+            if icon_path:
+                add Transform(icon_path, fit="contain", xysize=(w, h)) at interactive_hover_zoom:
+                    xalign 0.5
+                    yalign 0.5
+            else:
+                add Transform(Solid("#ffd96628"), xysize=(w, h)) at interactive_hover_zoom
+
+    if hovered_stage:
+        $ rect = hovered_stage.get("rect", {})
+        $ hx = rect.get("x", 0)
+        $ hy = rect.get("y", 0)
+        $ hw = rect.get("w", 80)
+        $ hh = rect.get("h", 80)
+        add Solid("#ffd9663c") xpos hx ypos hy xysize (hw, hh)
 
     if debug_clickables:
         for stage in stages:
@@ -41,16 +64,7 @@ screen world_map():
             $ w = rect.get("w", 80)
             $ h = rect.get("h", 80)
             add Solid("#ff0000ff") xpos x ypos y xysize (w, h)
-        frame:
-            xalign 0.98
-            yalign 0.02
-            background None
-            vbox:
-                text "Stage coords:" size 18
-                for stage in stages:
-                    $ rect = stage.get("rect", {})
-                    text "[stage['id']] @ ([rect.get('x')], [rect.get('y')]) unlocked=[stage.get('unlocked')]" size 14
-
+        
     if hovered_stage:
         frame:
             xalign 0.5

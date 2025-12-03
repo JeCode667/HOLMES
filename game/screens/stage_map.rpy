@@ -17,38 +17,33 @@ screen stage_map(stage_id=None):
             text "[stage.get('title', 'Stage Map')]" xalign 0.5
             text "Areas available: [len(areas)]" size 16 xalign 0.5
 
-    imagemap:
-        xpos 0
-        ypos 0
-        ground map_image
-        for area in areas:
-            $ rect = area.get("rect", {})
-            $ x = rect.get("x", 0)
-            $ y = rect.get("y", 0)
-            $ w = rect.get("w", 100)
-            $ h = rect.get("h", 100)
-            hotspot (x, y, w, h):
-                action [SetVariable("current_area", area["id"]), ShowMenu("area_exploration", area_id=area["id"])]
-                hovered SetScreenVariable("hovered_area", area)
-                unhovered SetScreenVariable("hovered_area", None)
+    add map_image
 
-    if debug_clickables:
-        for area in areas:
-            $ rect = area.get("rect", {})
-            $ x = rect.get("x", 0)
-            $ y = rect.get("y", 0)
-            $ w = rect.get("w", 100)
-            $ h = rect.get("h", 100)
-            add Solid("#0d00ff44") xpos x ypos y xysize (w, h)
-        frame:
-            xalign 0.98
-            yalign 0.02
+    for area in areas:
+        $ rect = area.get("rect", {})
+        $ x = rect.get("x", 0)
+        $ y = rect.get("y", 0)
+        $ w = rect.get("w", 100)
+        $ h = rect.get("h", 100)
+        $ icon_path = area.get("icon")
+        $ is_hovered = hovered_area and hovered_area.get("id") == area["id"]
+        button:
+            xpos x
+            ypos y
+            xsize w
+            ysize h
             background None
-            vbox:
-                text "Area coords:" size 18
-                for area in areas:
-                    $ rect = area.get("rect", {})
-                    text "[area['id']] @ ([rect.get('x')], [rect.get('y')])" size 14
+            padding (0, 0)
+            focus_mask True
+            hovered SetScreenVariable("hovered_area", area)
+            unhovered SetScreenVariable("hovered_area", None)
+            action [SetVariable("current_area", area["id"]), ShowMenu("area_exploration", area_id=area["id"]) ]
+            if icon_path:
+                add Transform(icon_path, fit="contain", xysize=(w, h)) at interactive_hover_zoom:
+                    xalign 0.5
+                    yalign 0.5
+            else:
+                add Transform(Solid("#ffd96628"), xysize=(w, h)) at interactive_hover_zoom
 
     if hovered_area:
         frame:
@@ -58,4 +53,8 @@ screen stage_map(stage_id=None):
     else:
         text "Select an area to begin exploration." xalign 0.5 yalign 0.95
 
-    textbutton "Back to Stage Context" action ShowMenu('stage_context', stage_id=active_stage_id) xalign 0.02 yalign 0.95
+    textbutton "Back to Stage Context" action ShowMenu('stage_context', stage_id=active_stage_id):
+        xalign 0.02
+        yalign 0.95
+        style_prefix "interactive_button"
+        at interactive_hover_zoom

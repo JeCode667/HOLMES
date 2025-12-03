@@ -122,5 +122,9 @@ screen stage_context(stage_id=None):
         spacing 40
         xalign 0.5
         yalign 0.93
-        textbutton "Enter Stage" action ShowMenu('stage_map', stage_id=active_stage)
-        textbutton "Back to World Map" action ShowMenu('world_map')
+        textbutton "Enter Stage" action ShowMenu('stage_map', stage_id=active_stage):
+            style_prefix "interactive_button"
+            at interactive_hover_zoom
+        textbutton "Back to World Map" action ShowMenu('world_map'):
+            style_prefix "interactive_button"
+            at interactive_hover_zoom
