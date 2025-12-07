@@ -34,6 +34,8 @@ screen world_map():
             background None
             padding (0, 0)
             focus_mask True
+            if debug_clickables:
+                add Solid("#ff000080")
             hovered SetScreenVariable("hovered_stage", stage)
             unhovered SetScreenVariable("hovered_stage", None)
             action [SetVariable("current_stage", stage["id"]), ShowMenu("stage_context", stage_id=stage["id"]) ]
@@ -54,17 +56,6 @@ screen world_map():
         $ hh = rect.get("h", 80)
         add Solid("#ffd9663c") xpos hx ypos hy xysize (hw, hh)
 
-    if debug_clickables:
-        for stage in stages:
-            if not stage.get("unlocked"):
-                continue
-            $ rect = stage.get("rect", {})
-            $ x = rect.get("x", 0)
-            $ y = rect.get("y", 0)
-            $ w = rect.get("w", 80)
-            $ h = rect.get("h", 80)
-            add Solid("#ff0000ff") xpos x ypos y xysize (w, h)
-        
     if hovered_stage:
         frame:
             xalign 0.5

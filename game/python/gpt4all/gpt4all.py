@@ -13,7 +13,7 @@ import warnings
 from contextlib import contextmanager
 from pathlib import Path
 from types import TracebackType
-from typing import TYPE_CHECKING, Any, Iterable, Literal, Protocol, overload
+from typing import TYPE_CHECKING, Any, Iterable, Literal, Protocol, overload, cast
 
 import requests
 from requests.exceptions import ChunkedEncodingError
@@ -24,14 +24,18 @@ except Exception:  # noqa: BLE001
     class _TqdmShim:
         def __init__(self, *args: Any, **kwargs: Any) -> None:
             self._iterable = args[0] if args else None
+            self.n = 0
 
         def __enter__(self) -> "_TqdmShim":
             return self
 
         def __exit__(self, exc_type, exc, tb) -> bool:
             return False
-
         def update(self, *args: Any, **kwargs: Any) -> None:
+            increment = args[0] if args else kwargs.get("n", 0)
+            if increment:
+                self.n += int(increment)
+            return None
             return None
 
         def __iter__(self):
@@ -642,6 +646,8 @@ class GPT4All:
         if system_prompt is None:
             system_prompt = self.config.get("systemPrompt", "")
 
+        system_prompt = "" if system_prompt is None else system_prompt
+
         if prompt_template is None:
             if (tmpl := self.config.get("promptTemplate")) is None:
                 warnings.warn("Use of a sideloaded model or allow_download=False without specifying a prompt template "
@@ -649,6 +655,7 @@ class GPT4All:
                 tmpl = DEFAULT_PROMPT_TEMPLATE
             prompt_template = tmpl
 
+        prompt_template = cast(str, prompt_template)
         if re.search(r"%1(?![0-9])", prompt_template):
             raise ValueError("Prompt template containing a literal '%1' is not supported. For a prompt "
                              "placeholder, please use '{0}' instead.")

@@ -11,132 +11,121 @@
         "default_unlocked": true,
         "map_image": "images/backgrounds/paris_map.jpg",
         "icon": "images/icons/paris.png",
+
         "context_cards": [
           {
             "id": "paris_context_1",
             "title": "France, 1788: Crisis Before the Storm",
-            "text": "France is on the brink. Decades of royal spending and costly wars have emptied the treasury. Food prices soar, and hunger spreads among the poor. Yet at Versailles, luxury continues. The people’s patience is thinning.",
+            "text": "France is on the brink. Decades of royal spending and costly wars have emptied the treasury. Food prices soar, and hunger spreads among the poor. Yet at Versailles, luxury continues.",
             "image": "images/context_cards/paris_streets.jpg"
           },
           {
             "id": "paris_context_2",
             "title": "May 1789: The Estates General Assemble",
-            "text": "In May 1789, Louis XVI summons the Estates-General (clergy, nobility, and commoners) to solve the crisis. But when the Third Estate demands real representation, tension rises. The old order begins to tremble.",
+            "text": "Louis XVI summons the Estates-General to solve the crisis. When the Third Estate demands real representation, the old political order begins to fracture.",
             "image": "images/context_cards/paris_assembly.jpg"
           },
           {
             "id": "paris_context_3",
-            "title": "July 14th, 1789: The Storming of the Bastille",
-            "text": "Anger explodes in Paris. On July 14th, a mob storms the Bastille, symbol of royal tyranny. Gunfire, smoke, and chaos fill the streets. The Revolution has begun and there is no turning back.",
+            "title": "July 1789: Paris Explodes",
+            "text": "Rumors of troop movements and political betrayal spread through Paris. Fear, anger, and hope collide.",
             "image": "images/context_cards/paris_bastille.jpg"
           }
         ],
+
         "areas": [
           {
             "id": "paris_bastille",
-            "title": "La Bastille - The Bastille fortress",
-            "summary": "Symbol of the Ancien Régime ('old rule')",
+            "title": "The Bastille",
+            "summary": "Symbol of royal authority",
             "rect": { "x": 880, "y": 430, "w": 100, "h": 100 },
             "background": "images/backgrounds/bastille.jpg",
             "icon": "images/icons/bastille.png",
+
             "interactions": [
               {
-                "id": "paris_bastille_guard",
-                "title": "Disillusioned Guard",
+                "id": "bastille_soldier",
+                "title": "Bastille Guard",
                 "sprite": "images/characters/icon person.png",
-                "rect": { "x": 880, "y": 555, "w": 50, "h": 50 },
-                "dialogue": {
-                  "header": "Guard",
-                  "text": "It's over, they cannot be stopped no more... How did it get this bad ?",
-                  "keywords": ["hunger", "power", "change"],
-                  "success_feedback": "That is true. It seems like it was bound to happen.",
-                  "failure_feedback": "I do not think you understand the situation... It is about the people."
-                }
+                "rect": { "x": 880, "y": 555, "w": 50, "h": 50 }
               },
               {
-                "id": "paris_bastille_demonstrator",
-                "title": "Demonstrator",
+                "id": "bastille_worker",
+                "title": "Parisian Demonstrator",
                 "sprite": "images/characters/icon person.png",
-                "rect": { "x": 360, "y": 540, "w": 50, "h": 50 },
-                "dialogue": {
-                  "header": "Demonstrator",
-                  "text": "It is about time we end this ! This place cannot hold any longer, we shall free erveryone !!!",
-                  "keywords": ["freedom", "change", "misery"],
-                  "success_feedback": "Exactly ! Come with us ! You shall be one of the proud liberators !",
-                  "failure_feedback": "I think you are confused here... Or are you with the guards ???"
-                }
+                "rect": { "x": 360, "y": 540, "w": 50, "h": 50 }
               }
             ]
           },
+
           {
             "id": "paris_palais",
-            "title": "Quartier Palais-Royal - Royal Palace area",
-            "summary": "Intellectual thriving hub",
+            "title": "Palais-Royal",
+            "summary": "Political agitation and speech",
             "rect": { "x": 500, "y": 240, "w": 100, "h": 100 },
             "background": "images/backgrounds/palace.jpg",
             "icon": "images/icons/palace.png",
+
             "interactions": [
               {
-                "id": "rome_palace_guard",
-                "title": "Stoic Guard",
+                "id": "palais_orator",
+                "title": "Political Orator",
                 "sprite": "images/characters/npc.png",
-                "rect": { "x": 560, "y": 360, "w": 110, "h": 110 },
-                "dialogue": {
-                  "header": "Stoic Guard",
-                  "text": "State your business. Who sent you to these halls?",
-                  "keywords": ["senate", "brutus", "diplomatic"],
-                  "success_feedback": "The guard allows you passage with a curt nod.",
-                  "failure_feedback": "He grips his spear tighter. Mention your patron or mission."
-                }
+                "rect": { "x": 560, "y": 360, "w": 110, "h": 110 }
               },
               {
-                "id": "rome_palace_advisor",
-                "title": "Wary Advisor",
+                "id": "palais_pamphleteer",
+                "title": "Pamphlet Seller",
                 "sprite": "images/characters/npc.png",
-                "rect": { "x": 610, "y": 300, "w": 110, "h": 110 },
-                "dialogue": {
-                  "header": "Wary Advisor",
-                  "text": "We craft tomorrow's decree tonight. What policy must we prioritise?",
-                  "keywords": ["grain", "alliance", "treasury"],
-                  "success_feedback": "He jots down your recommendation for the morning council.",
-                  "failure_feedback": "He frowns. Aim for tangible policy or resources."
-                }
+                "rect": { "x": 610, "y": 300, "w": 110, "h": 110 }
               }
             ]
           },
+
           {
-            "id": "paris_abbey",
+            "id": "paris_faubourg",
             "title": "Faubourg Saint-Germain",
-            "summary": "The heart of ecclesiastical Paris",
+            "summary": "District of nobility and inertia",
             "rect": { "x": 480, "y": 420, "w": 100, "h": 100 },
             "background": "images/backgrounds/abbey.jpg",
             "icon": "images/icons/abbey.png",
+
             "interactions": [
               {
-                "id": "rome_docks_captain",
-                "title": "River Captain",
+                "id": "faubourg_noble",
+                "title": "Conservative Noble",
                 "sprite": "images/characters/npc.png",
-                "rect": { "x": 200, "y": 440, "w": 110, "h": 110 },
-                "dialogue": {
-                  "header": "River Captain",
-                  "text": "Boats carry more than grain. What rumor should I ferry upriver?",
-                  "keywords": ["rebellion", "supply", "patrol"],
-                  "success_feedback": "He salutes and orders the crew to spread the word.",
-                  "failure_feedback": "He shrugs. Share something worth the voyage."
-                }
+                "rect": { "x": 200, "y": 440, "w": 110, "h": 110 }
               },
               {
-                "id": "rome_docks_smuggler",
-                "title": "Nervous Smuggler",
+                "id": "faubourg_deputy",
+                "title": "Moderate Deputy",
                 "sprite": "images/characters/npc.png",
-                "rect": { "x": 120, "y": 500, "w": 110, "h": 110 },
-                "dialogue": {
-                  "header": "Nervous Smuggler",
-                  "text": "Keep it quiet. Which cargo needs a silent escort tonight?",
-                  "keywords": ["scrolls", "arms", "coin"],
-                  "success_feedback": "He grins and signals his partners to prepare.",
-                  "failure_feedback": "He backs away. Be specific about the contraband."
-                }
+                "rect": { "x": 120, "y": 500, "w": 110, "h": 110 }
+              }
+            ]
+          },
+
+          {
+            "id": "paris_editorial_office",
+            "title": "Newspaper Office",
+            "summary": "Where history is written",
+            "rect": { "x": 700, "y": 320, "w": 100, "h": 100 },
+            "background": "images/backgrounds/editor_office.jpg",
+            "icon": "images/icons/editor.png",
+
+            "interactions": [
+              {
+                "id": "editor_office",
+                "title": "Editor-in-chief",
+                "sprite": "images/characters/npc.png",
+                "rect": { "x": 720, "y": 360, "w": 110, "h": 110 }
+              },
+              {
+                "id": "article_submission",
+                "title": "Printing Press",
+                "sprite": "images/characters/npc.png",
+                "rect": { "x": 780, "y": 400, "w": 110, "h": 110 }
               }
             ]
           }
